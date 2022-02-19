@@ -4,9 +4,37 @@ const colors = Array.from(document.querySelectorAll(".jsColor"));
 const range = document.getElementById("jsRange");
 const btnMode = document.getElementById("jsMode");
 const btnSave = document.getElementById("jsSave");
+let CANVAS_SIZE = 700;
+let windowInnerWidth = document.documentElement.clientWidth
+
+if (windowInnerWidth < 750) {
+  CANVAS_SIZE = windowInnerWidth - 30
+}
+
+const resizeWindow = () => {
+  windowInnerWidth = document.documentElement.clientWidth
+
+  if (windowInnerWidth <= 320) {
+    return CANVAS_SIZE = 290
+
+  }
+
+  if (windowInnerWidth < 750) {
+    CANVAS_SIZE = windowInnerWidth - 30
+
+    canvas.width = CANVAS_SIZE;
+    canvas.height = CANVAS_SIZE;
+    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+  } else {
+    CANVAS_SIZE = 700
+  }
+
+}
+
+window.addEventListener('resize', resizeWindow);
+
 
 const INITIAL_COLOR = "#2c2c2c";
-const CANVAS_SIZE = 700;
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
